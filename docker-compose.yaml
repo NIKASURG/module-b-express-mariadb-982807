@@ -1,39 +1,16 @@
 services:
-  db:
-    image: mariadb:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: competition
-      MYSQL_USER: dev2025
-      MYSQL_PASSWORD: password
-    volumes:
-      - data:/var/lib/mysql
-    ports:
-      - 3306:3306
-    healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-      start_period: 10s
-      interval: 10s
-      timeout: 5s
-      retries: 3
-  phpmyadmin:
-    image: phpmyadmin:5.2.2-fpm-alpine
-    restart: always
-    depends_on:
-      db:
-        condition: service_healthy
-    ports:
-      - 8080:80
+
   app:
     build: .
     depends_on:
       db:
         condition: service_healthy
     environment:
-      - DB_HOST=db
-      - DB_USER=dev2025
-      - DB_PASSWORD=password
-      - DB_NAME=competition
+      - DB_HOST=172.17.51.94
+      - DB_USER=982807
+      - DB_PASSWORD=982807
+      - DB_NAME=982807
+      - DB_PORT=3307
     volumes:
       - ./:/app
     ports:
