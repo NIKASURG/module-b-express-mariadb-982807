@@ -102,11 +102,11 @@ db.getConnection((err, connection) => {
 
 // Welcome Route
 app.get('/', (req, res) => {
-    for (let i = 0; i < obijektaiListPagalAtstuam.length; i++) {
+    
         res.send(
-        obijektaiListPagalAtstuam[i].atstumas + obijektaiListPagalAtstuam[i].tekstas)
+        obijektaiListPagalAtstuam)
 
-        }
+        
 });
 
 
