@@ -65,29 +65,35 @@ db.getConnection((err, connection) => {
 
 
 
+
+
+            //
+
+
+
             // IVVESKITE SAVO KORDINATES AUTOMATINIS KORDINACIU PAEMIMAS VIS DAR DAROMAS 🚧🚧🚧🚧 PLANUOJAMA DARBU PABAIGA 2040 kovo 2 18:43     
             latitude=  54.89699349813067
             longitude =  23.918543468384733
 
 
+            
 
-
-            obijektaiListPagalAtstuam.push( Math.floor(  getDistanceFromLatLonInKm( latitude,longitude,data[i].latitude,data[i].longitude)   *100)/100 +' Km iki '+ data[i].name + ' nuo jusu')
+            obijektaiListPagalAtstuam.push(  {  atstumas: Math.floor( getDistanceFromLatLonInKm( latitude,longitude,data[i].latitude,data[i].longitude)   *100)/100, tekstas:  ' Km iki '+ data[i].name + ' nuo jusu'})
             
 
             // console.log(obijektaiListPagalAtstuam[i].split(" "))
-            c.push(obijektaiListPagalAtstuam[i].split(" ")) 
+             
 
             
         }
 
-        while(neisrusiotas){
+       
+        obijektaiListPagalAtstuam.sort((a, b) => a.atstumas - b.atstumas)
+        for (let i = 0; i < obijektaiListPagalAtstuam.length; i++) {
+        console.log(obijektaiListPagalAtstuam[i].atstumas + obijektaiListPagalAtstuam[i].tekstas)
 
         }
-        for (let i = 0; i < c.length; i++) {
-
-        }
-        console.log(c)
+        // console.log(c)
         })
         .catch(error => console.error("Network error:", error));
     }
